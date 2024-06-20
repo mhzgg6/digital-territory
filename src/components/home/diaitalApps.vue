@@ -2,8 +2,13 @@
   <div class="diaital-apps">
     <div class="diaital-apps-warp">
       <ul class="app-container">
-        <li v-for="(item, index) in appMenus" :key="index">
-          {{ item.name }}
+        <li v-for="(item, index) in appMenus" :key="index" class="app-item">
+          <div class="app-item-icon">
+            <img :src="item.icon" />
+          </div>
+          <div class="app-item-title">
+            {{ item.name }}
+          </div>
         </li>
       </ul>
     </div>
@@ -11,7 +16,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue"
+import { reactive } from "vue"
 
 type AppMenu = {
   name: string
@@ -19,20 +24,19 @@ type AppMenu = {
   url: string
 }
 
-const appMenus: AppMenu = ref([
+const getImg = (imgName: string): string => {
+  return new URL(`/src/assets/icons/${imgName}.svg`, import.meta.url).href
+}
+
+const appMenus: AppMenu[] = reactive([
   {
-    name: "微信",
-    icon: "wechat",
+    name: "微博",
+    icon: getImg("weibo"),
     url: "https://www.baidu.com",
   },
   {
-    name: "QQ",
-    icon: "qq",
-    url: "https://www.baidu.com",
-  },
-  {
-    name: "百度",
-    icon: "baidu",
+    name: "抖音",
+    icon: getImg("douyin"),
     url: "https://www.baidu.com",
   },
 ])
