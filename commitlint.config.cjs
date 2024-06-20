@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ['@commitlint/config-conventional'],
+  extends: ["@commitlint/config-conventional"],
 }
 
 // git commit -m <type>[optional scope]: <description> //注意冒号后面有空格

@@ -7,6 +7,9 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    DiaitalApps: typeof import('./src/components/home/diaitalApps.vue')['default']
+    DiaitalDate: typeof import('./src/components/home/diaitalDate.vue')['default']
+    DiaitalHeader: typeof import('./src/components/home/diaitalHeader.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElIcon: typeof import('element-plus/es')['ElIcon']
     RouterLink: typeof import('vue-router')['RouterLink']

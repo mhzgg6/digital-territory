@@ -1,8 +1,10 @@
 <template>
-  <div class="test">
-    <el-icon><Plus /></el-icon>
-    <el-icon><CirclePlus /></el-icon>
-    <el-button type="primary">Primary</el-button>
+  <div class="app-main">
+    <div class="app-main-container">
+      <diaital-header></diaital-header>
+      <diaital-date></diaital-date>
+      <diaital-apps></diaital-apps>
+    </div>
   </div>
 </template>
 

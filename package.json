@@ -9,7 +9,7 @@
     "preview": "vite preview",
     "ts": "vue-tsc --noEmit",
     "lint": "eslint src --fix --ext .ts,.tsx,.vue,.js,.jsx --max-warnings 0",
-    "test":"vite --mode test"
+    "test": "vite --mode test"
   },
   "dependencies": {
     "vue": "^3.4.21",
@@ -30,6 +30,7 @@
     "eslint-plugin-vue": "^9.11.0",
     "husky": "^8.0.3",
     "lint-staged": "^15.2.0",
+    "normalize.css": "^8.0.1",
     "prettier": "^3.2.4",
     "sass": "^1.77.6",
     "typescript": "^5.2.2",
