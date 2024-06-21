@@ -2,8 +2,8 @@
   <div class="diaital-apps">
     <div class="diaital-apps-warp">
       <ul class="app-container">
-        <li v-for="(item, index) in appMenus" :key="index" class="app-item">
-          <div class="app-item-icon">
+        <li v-for="(item, index) in appMenus" :key="index" :class="'icon-size-' + item.size" class="app-item">
+          <div class="app-item-icon" :style="{ backgroundColor: item.color }">
             <img :src="item.icon" />
           </div>
           <div class="app-item-title">
@@ -22,6 +22,8 @@ type AppMenu = {
   name: string
   icon: string
   url: string
+  size: string
+  color: string
 }
 
 const getImg = (imgName: string): string => {
@@ -33,11 +35,112 @@ const appMenus: AppMenu[] = reactive([
     name: "微博",
     icon: getImg("weibo"),
     url: "https://www.baidu.com",
+    size: "1x1",
+    color: "#ffd850",
   },
   {
     name: "抖音",
-    icon: getImg("douyin"),
+    icon: getImg("douyu"),
     url: "https://www.baidu.com",
+    size: "1x1",
+    color: "#fe6a2d",
+  },
+  {
+    name: "抖音",
+    icon: getImg("douyu"),
+    url: "https://www.baidu.com",
+    size: "2x2",
+  },
+  {
+    name: "抖音",
+    icon: getImg("douyu"),
+    url: "https://www.baidu.com",
+    size: "1x1",
+  },
+  {
+    name: "微博",
+    icon: getImg("weibo"),
+    url: "https://www.baidu.com",
+    size: "1x2",
+  },
+  {
+    name: "微博",
+    icon: getImg("weibo"),
+    url: "https://www.baidu.com",
+    size: "2x1",
+  },
+  {
+    name: "微博",
+    icon: getImg("weibo"),
+    url: "https://www.baidu.com",
+    size: "1x1",
+  },
+  {
+    name: "微博",
+    icon: getImg("weibo"),
+    url: "https://www.baidu.com",
+    size: "2x4",
+  },
+  {
+    name: "微博",
+    icon: getImg("weibo"),
+    url: "https://www.baidu.com",
+    size: "1x1",
+  },
+
+  {
+    name: "微博",
+    icon: getImg("weibo"),
+    url: "https://www.baidu.com",
+    size: "1x1",
+  },
+  {
+    name: "抖音",
+    icon: getImg("douyu"),
+    url: "https://www.baidu.com",
+    size: "1x1",
+  },
+  {
+    name: "抖音",
+    icon: getImg("douyu"),
+    url: "https://www.baidu.com",
+    size: "2x2",
+  },
+  {
+    name: "抖音",
+    icon: getImg("douyu"),
+    url: "https://www.baidu.com",
+    size: "1x1",
+  },
+  {
+    name: "微博",
+    icon: getImg("weibo"),
+    url: "https://www.baidu.com",
+    size: "1x2",
+  },
+  {
+    name: "微博",
+    icon: getImg("weibo"),
+    url: "https://www.baidu.com",
+    size: "2x1",
+  },
+  {
+    name: "微博",
+    icon: getImg("weibo"),
+    url: "https://www.baidu.com",
+    size: "1x1",
+  },
+  {
+    name: "微博",
+    icon: getImg("weibo"),
+    url: "https://www.baidu.com",
+    size: "2x4",
+  },
+  {
+    name: "微博",
+    icon: getImg("weibo"),
+    url: "https://www.baidu.com",
+    size: "1x1",
   },
 ])
 </script>

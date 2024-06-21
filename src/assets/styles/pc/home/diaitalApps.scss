@@ -4,11 +4,62 @@
     margin: 0 auto;
     max-width: 1200px;
     height: 100%;
+    border: 1px solid pink;
     .app-container{
       display: grid;
       padding-top: 2vh;
+      grid-template-columns: repeat(auto-fit, $icon-size);
+      grid-template-rows: repeat(auto-fit, $icon-size);
+      grid-gap: calc($icon-size/2) calc($icon-size/2);
+      grid-auto-flow: dense;
       .app-item{
-        
+        &.icon-size-1x1{
+          grid-column: span 1;
+          grid-row: span 1;
+          width: $icon-size;
+          height: $icon-size;
+        }
+        &.icon-size-1x2{
+          grid-column: span 2;
+          grid-row: span 1;
+          width: calc(($icon-size*2) + ($icon-size/2));
+          height: $icon-size;
+        }
+        &.icon-size-2x1{
+          grid-column: span 1;
+          grid-row: span 2;
+          width: $icon-size;
+          height: calc(($icon-size*2) + ($icon-size/2));
+        }
+        &.icon-size-2x2{
+          grid-column: span 2;
+          grid-row: span 2;
+          width: calc(($icon-size*2) + ($icon-size/2));
+          height: calc(($icon-size*2) + ($icon-size/2));
+        }
+        &.icon-size-2x4{
+          grid-column: span 4;
+          grid-row: span 2;
+          width: calc(($icon-size*4) + ($icon-size/2) * 3);
+          height: calc(($icon-size*2) + ($icon-size/2));
+        }
+        .app-item-icon{
+          width: 100%;
+          height: 100%;
+          border-radius: 10px;
+          background-color: red;
+          img{
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+          }
+        }
+        .app-item-title{
+          margin-top: 3%;
+          text-align: center;
+          line-height: 1.1;
+          filter: drop-shadow(0px 2px 7px rgba(0, 0, 0, .8));
+        }
       }
     }
   }
