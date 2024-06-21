@@ -1,0 +1,3 @@
+@mixin font-theme($k, $important: false) {
+  color: var(--t--#{$k});
+}

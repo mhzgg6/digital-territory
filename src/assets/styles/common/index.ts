@@ -3,11 +3,15 @@
  */
 import themes from "./index.module.scss"
 
-const $themes = {}
+type Themes = {
+  [key: string]: object
+}
 
-for (let key in themes) {
-  let keys = key.split("___")
-  let temp = $themes
+const $themes: Themes = {}
+
+for (const key in themes) {
+  const keys = key.split("___")
+  let temp: any = $themes
   for (let i = 0, l = keys.length; i < l; i++) {
     if (i == l - 1) {
       temp[keys[i]] = themes[key]
@@ -16,7 +20,7 @@ for (let key in themes) {
     if (!temp[keys[i]]) {
       temp[keys[i]] = {}
     }
-    temp = temp[keys[i]]
+    temp = temp[keys[i]] as object
   }
 }
 

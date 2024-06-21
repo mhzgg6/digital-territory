@@ -1,6 +1,7 @@
 .diaital-date{
   text-align: center;
-  color: #fff;
+  // color: #fff;
+  @include font-theme('page_background');
   .diaital-date-warp{
     .time{
       font-size: 70px;
