@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { onMounted } from "vue"
-import { setThemeVar } from "@/utils/themeGlobalSetting"
+import { getTheme, setThemeVar } from "@/utils/themeGlobalSetting"
 
 onMounted(() => {
-  setThemeVar()
+  const theme = getTheme()
+  setThemeVar(theme)
 })
 </script>
 
