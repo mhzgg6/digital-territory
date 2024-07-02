@@ -1,3 +1,7 @@
 @mixin font-theme($k, $important: false) {
-  color: var(--t--#{$k});
+  @if $important {
+    color: var(--t--#{$k}) !important;
+  } @else {
+    color: var(--t--#{$k});
+  }
 }
