@@ -1,24 +1,35 @@
 <template>
   <div class="diaital-apps">
     <div class="diaital-apps-warp">
-      <ul class="app-container">
-        <li v-for="(item, index) in appMenus" :key="index" :class="'icon-size-' + item.size" class="app-item">
-          <div class="app-item-icon" :style="{ backgroundColor: item.color }">
-            <img :src="item.icon" />
-          </div>
-          <div class="app-item-title">
-            {{ item.name }}
-          </div>
-        </li>
-      </ul>
+      <VueDraggable
+        ref="el"
+        v-model="appMenus"
+        :animation="300"
+        target=".app-container"
+        @start="onStart"
+        @update="onUpdate"
+      >
+        <ul class="app-container">
+          <li v-for="item in appMenus" :key="item.id" :class="'icon-size-' + item.size" class="app-item">
+            <div class="app-item-icon" :style="{ backgroundColor: item.color }">
+              <img :src="item.icon" />
+            </div>
+            <div class="app-item-title">
+              {{ item.name }}
+            </div>
+          </li>
+        </ul>
+      </VueDraggable>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { reactive } from "vue"
+import { ref } from "vue"
+import { type UseDraggableReturn, VueDraggable } from "vue-draggable-plus"
 
-type AppMenu = {
+interface AppMenu {
+  id: number
   name: string
   icon: string
   url: string
@@ -26,12 +37,19 @@ type AppMenu = {
   color: string
 }
 
+const el = ref<UseDraggableReturn>()
+
+const onStart = () => {}
+
+const onUpdate = () => {}
+
 const getImg = (imgName: string): string => {
   return new URL(`/src/assets/icons/${imgName}.svg`, import.meta.url).href
 }
 
-const appMenus: AppMenu[] = reactive([
+const appMenus = ref<AppMenu[]>([
   {
+    id: 0,
     name: "微博",
     icon: getImg("weibo"),
     url: "https://www.baidu.com",
@@ -39,18 +57,21 @@ const appMenus: AppMenu[] = reactive([
     color: "#ffd850",
   },
   {
+    id: 1,
     name: "抖音",
     icon: getImg("douyu"),
     url: "https://www.baidu.com",
     size: "1x1",
     color: "#fe6a2d",
   },
-  // {
-  //   name: "抖音",
-  //   icon: getImg("douyu"),
-  //   url: "https://www.baidu.com",
-  //   size: "2x2",
-  // },
+  {
+    id: 2,
+    name: "测试",
+    icon: getImg("douyu"),
+    url: "https://www.baidu.com",
+    size: "2x2",
+    color: "#fe6a2d",
+  },
   // {
   //   name: "抖音",
   //   icon: getImg("douyu"),
