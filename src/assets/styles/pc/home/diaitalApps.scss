@@ -13,6 +13,7 @@
       grid-gap: calc($icon-size/2) calc($icon-size/2);
       grid-auto-flow: dense;
       .app-item{
+        cursor: move;
         &.icon-size-1x1{
           grid-column: span 1;
           grid-row: span 1;
