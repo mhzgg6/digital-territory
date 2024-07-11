@@ -41,7 +41,14 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
       host: "0.0.0.0",
       cors: true, // 默认启用并允许任何源
       //代理
-      proxy: {},
+      proxy: {
+        "/api": {
+          target: "http://localhost:3000/api/",
+          ws: true,
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/api/, ""),
+        },
+      },
     },
   }
 })

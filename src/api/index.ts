@@ -1,5 +1,4 @@
 import axios, { AxiosInstance, AxiosError, AxiosResponse, AxiosRequestConfig } from "axios"
-import { log } from "console"
 import { ElMessage, ElMessageBox } from "element-plus"
 
 interface RESULT {
@@ -18,8 +17,6 @@ enum RequestEnum {
   TIMEOUT_CODE = 401,
   SUCCESS_CODE = 200,
 }
-
-console.log(import.meta.env.VITE_PUBLIC_PATH)
 
 const baseConfig = {
   baseURL: import.meta.env.VITE_PUBLIC_PATH as string,
