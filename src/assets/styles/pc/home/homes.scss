@@ -4,9 +4,12 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  .app-main-container{
-    display: flex;
-    flex-direction: column;
+  .context-menu-container{
     height: 100%;
+    .app-main-container{
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
   }
 }

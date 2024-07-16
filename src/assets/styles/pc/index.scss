@@ -20,4 +20,10 @@ body{
   height: 100%;
 }
 
+.app-warp{
+  height: 100%;
+}
+
+@import "./components/index.scss";
+
 @import "./home/index.scss";

@@ -3,8 +3,8 @@ import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router"
 //路由创建
 const constantRouterMap: Array<RouteRecordRaw> = [
   {
-    path: "/",
-    name: "test",
+    path: "/home",
+    name: "Home",
     component: () => import("@/views/home.vue"),
   },
 ]
