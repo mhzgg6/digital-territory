@@ -40,6 +40,7 @@ class Request {
         // return {
         //   ...config
         // }
+
         return config
       },
       (err: AxiosError) => {
@@ -100,19 +101,19 @@ class Request {
 
   // 通用请求
   get<T>(url: string, params?: object): Promise<RESULT_DATA<T>> {
-    return this.service.get(url, { params })
+    return this.service.get(url, { ...params })
   }
 
   post<T>(url: string, params?: object): Promise<RESULT_DATA<T>> {
-    return this.service.post(url, { params })
+    return this.service.post(url, { ...params })
   }
 
   put<T>(url: string, params?: object): Promise<RESULT_DATA<T>> {
-    return this.service.put(url, { params })
+    return this.service.put(url, { ...params })
   }
 
   delete<T>(url: string, params?: object): Promise<RESULT_DATA<T>> {
-    return this.service.delete(url, { params })
+    return this.service.delete(url, { ...params })
   }
 }
 

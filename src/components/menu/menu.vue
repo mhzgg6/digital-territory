@@ -3,7 +3,7 @@
     <slot></slot>
     <Teleport to="body">
       <Transition @before-enter="handleBeforeEnter" @enter="handleEnter" @after-enter="handleAfterEnter">
-        <div v-if="showMenu" class="context-menu" :style="{ left: x + 'px', top: y + 'px' }">
+        <div v-if="showMenu" ref="contextMenu" class="context-menu" :style="{ left: x + 'px', top: y + 'px' }">
           <div class="menu-list">
             <div v-for="(item, index) in menuList" :key="index" class="menu-item" @click="handleIemClick(item)">
               {{ item.label }}

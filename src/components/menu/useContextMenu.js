@@ -6,15 +6,9 @@ export default function useContextMenu(containerRef) {
   const y = ref(0)
 
   const handleContextMenu = (e) => {
-    console.log(e.clientX, 'x')
-    console.log(e.clientY, 'clientY')
-    console.log(e.offsetWidth, 'clientY')
-    console.log(e)
     e.preventDefault()
     e.stopPropagation()
     showMenu.value = true
-    const menuEl = document.querySelector(".context-menu")
-    console.log(menuEl)
     x.value = e.clientX
     y.value = e.clientY
   }
