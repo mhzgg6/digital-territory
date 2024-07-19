@@ -15,6 +15,7 @@
     "axios": "^1.7.2",
     "lodash": "^4.17.21",
     "vue": "^3.4.21",
+    "vue-dompurify-html": "^5.1.0",
     "vue-draggable-plus": "^0.5.0",
     "vue-router": "^4.3.3",
     "vuedraggable": "^2.24.3"

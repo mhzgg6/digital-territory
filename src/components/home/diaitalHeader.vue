@@ -3,25 +3,43 @@
     <div class="diaital-header-warp">
       <!-- <div v-html="captcha && captcha.data"></div> -->
       <div @click="handleToggleTheme">主题切换</div>
-      <div @click="handleRegister">设置</div>
+      <div @click="openDialog">设置</div>
     </div>
+    <el-dialog v-model="dialogFormVisible" :append-to-body="true" title="Shipping address" width="500">
+      <el-form :model="form">
+        <el-row>
+          <el-col>
+            <el-form-item label="用户名" :label-width="formLabelWidth">
+              <el-input v-model="form.username" autocomplete="off" />
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col>
+            <el-form-item label="密码" :label-width="formLabelWidth">
+              <el-input v-model="form.password" autocomplete="off" />
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="16">
+            <el-form-item label="验证码" :label-width="formLabelWidth">
+              <el-input v-model="form.captcha" autocomplete="off" />
+            </el-form-item>
+          </el-col>
+          <el-col :span="8">
+            <div v-dompurify-html="captcha && captcha.data"></div>
+          </el-col>
+        </el-row>
+      </el-form>
+      <template #footer>
+        <div class="dialog-footer">
+          <el-button @click="handleLogin">登录</el-button>
+          <el-button type="primary" @click="handleRegister">注册</el-button>
+        </div>
+      </template>
+    </el-dialog>
   </div>
-  <el-dialog v-model="dialogFormVisible" :append-to-body="true" title="Shipping address" width="500">
-    <el-form :model="form">
-      <el-form-item label="用户名" :label-width="formLabelWidth">
-        <el-input v-model="form.username" autocomplete="off" />
-      </el-form-item>
-      <el-form-item label="密码" :label-width="formLabelWidth">
-        <el-input v-model="form.password" autocomplete="off" />
-      </el-form-item>
-    </el-form>
-    <template #footer>
-      <div class="dialog-footer">
-        <el-button @click="dialogFormVisible = false">Cancel</el-button>
-        <el-button type="primary" @click="dialogFormVisible = false">Confirm</el-button>
-      </div>
-    </template>
-  </el-dialog>
 </template>
 
 <script setup lang="ts">
@@ -36,6 +54,7 @@ interface Captcha {
 interface Form {
   username: string
   password: string
+  captcha: string
 }
 const captcha = ref<Captcha | null>(null)
 const dialogFormVisible = ref(false)
@@ -44,6 +63,7 @@ const formLabelWidth = "140px"
 const form = reactive<Form>({
   username: "",
   password: "",
+  captcha: "",
 })
 
 onMounted(() => {
@@ -59,8 +79,15 @@ const getCaptcha = () => {
     captcha.value = res.data
   })
 }
-const handleRegister = () => {
+const openDialog = () => {
   dialogFormVisible.value = true
   // request.post("/api/user/register", { username: "mhz", password: "123456" }).then(() => {})
+}
+
+const handleRegister = () => {
+  request.post("/api/user/register", { username: "mhz", password: "123456" }).then(() => {})
+}
+const handleLogin = () => {
+  request.post("/api/user/login", { username: "mhz", password: "123456" }).then(() => {})
 }
 </script>

@@ -67,7 +67,7 @@ class Request {
           })
         }
         if (data.code && data.code !== RequestEnum.SUCCESS_CODE) {
-          ElMessage.error(data)
+          ElMessage.error(data?.msg || "")
           return Promise.reject(data)
         }
         return data
