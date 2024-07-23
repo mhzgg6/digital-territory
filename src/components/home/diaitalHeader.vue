@@ -24,7 +24,7 @@
         <el-row>
           <el-col :span="16">
             <el-form-item label="验证码" :label-width="formLabelWidth">
-              <el-input v-model="form.captcha" autocomplete="off" />
+              <el-input v-model="form.code" autocomplete="off" />
             </el-form-item>
           </el-col>
           <el-col :span="8">
@@ -45,6 +45,7 @@
 <script setup lang="ts">
 import { onMounted, ref, reactive } from "vue"
 import request from "@/api/index"
+import { encrypt } from "@/utils/crypto"
 import { getTheme, toggleTheme } from "@/utils/themeGlobalSetting"
 
 interface Captcha {
@@ -54,7 +55,7 @@ interface Captcha {
 interface Form {
   username: string
   password: string
-  captcha: string
+  code: string
 }
 const captcha = ref<Captcha | null>(null)
 const dialogFormVisible = ref(false)
@@ -63,11 +64,11 @@ const formLabelWidth = "140px"
 const form = reactive<Form>({
   username: "",
   password: "",
-  captcha: "",
+  code: "",
 })
 
 onMounted(() => {
-  getCaptcha()
+  // getCaptcha()
 })
 const handleToggleTheme = () => {
   const theme = getTheme()
@@ -80,6 +81,7 @@ const getCaptcha = () => {
   })
 }
 const openDialog = () => {
+  getCaptcha()  
   dialogFormVisible.value = true
   // request.post("/api/user/register", { username: "mhz", password: "123456" }).then(() => {})
 }
@@ -88,6 +90,7 @@ const handleRegister = () => {
   request.post("/api/user/register", { username: "mhz", password: "123456" }).then(() => {})
 }
 const handleLogin = () => {
-  request.post("/api/user/login", { username: "mhz", password: "123456" }).then(() => {})
+  const data = { ...form, password: encrypt(form.password) }
+  request.post("/api/user/login", { ...data }).then(() => {})
 }
 </script>
