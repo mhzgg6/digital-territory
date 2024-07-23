@@ -87,7 +87,8 @@ const openDialog = () => {
 }
 
 const handleRegister = () => {
-  request.post("/api/user/register", { username: "mhz", password: "123456" }).then(() => {})
+  const data = { ...form, password: encrypt(form.password) }
+  request.post("/api/user/register", { ...data }).then(() => {})
 }
 const handleLogin = () => {
   const data = { ...form, password: encrypt(form.password) }
