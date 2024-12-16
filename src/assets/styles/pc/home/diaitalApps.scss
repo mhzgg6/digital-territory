@@ -5,6 +5,9 @@
     max-width: 1200px;
     height: 100%;
     border: 1px solid pink;
+    .el-carousel{
+      height: 100%;
+    }
     .app-container{
       display: grid;
       padding-top: 2vh;

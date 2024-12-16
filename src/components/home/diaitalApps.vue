@@ -1,25 +1,29 @@
 <template>
   <div class="diaital-apps">
     <div class="diaital-apps-warp">
-      <VueDraggable
-        ref="el"
-        v-model="appMenus"
-        :animation="300"
-        target=".app-container"
-        @start="onStart"
-        @update="onUpdate"
-      >
-        <ul class="app-container">
-          <li v-for="item in appMenus" :key="item.id" :class="'icon-size-' + item.size" class="app-item">
-            <div class="app-item-icon" :style="{ backgroundColor: item.color }">
-              <img :src="item.icon" />
-            </div>
-            <div class="app-item-title">
-              {{ item.name }}
-            </div>
-          </li>
-        </ul>
-      </VueDraggable>
+      <el-carousel :autoplay="false">
+        <el-carousel-item v-for="(item, index) in tabs" :key="index" style="height: 100%">
+          <VueDraggable
+            ref="el"
+            v-model="item.apps"
+            :animation="300"
+            target=".app-container"
+            @start="onStart"
+            @update="onUpdate"
+          >
+            <ul class="app-container">
+              <li v-for="app in item.apps" :key="app.id" :class="'icon-size-' + app.size" class="app-item">
+                <div class="app-item-icon" :style="{ backgroundColor: app.color }">
+                  <img :src="app.icon" />
+                </div>
+                <div class="app-item-title">
+                  {{ app.name }}
+                </div>
+              </li>
+            </ul>
+          </VueDraggable>
+        </el-carousel-item>
+      </el-carousel>
     </div>
   </div>
 </template>
@@ -28,7 +32,7 @@
 import { ref } from "vue"
 import { type UseDraggableReturn, VueDraggable } from "vue-draggable-plus"
 
-interface AppMenu {
+interface App {
   id: number
   name: string
   icon: string
@@ -37,131 +41,174 @@ interface AppMenu {
   color: string
 }
 
-const el = ref<UseDraggableReturn>()
-
-const onStart = () => {}
-
-const onUpdate = () => {}
+interface Tab {
+  name: string
+  apps: App[]
+}
 
 const getImg = (imgName: string): string => {
   return new URL(`/src/assets/icons/${imgName}.svg`, import.meta.url).href
 }
 
-const appMenus = ref<AppMenu[]>([
+const tabs = ref<Tab[]>([
   {
-    id: 0,
-    name: "微博",
-    icon: getImg("weibo"),
-    url: "https://www.baidu.com",
-    size: "1x1",
-    color: "#ffd850",
+    name: "第一",
+    apps: [
+      {
+        id: 0,
+        name: "微博",
+        icon: getImg("weibo"),
+        url: "https://www.baidu.com",
+        size: "1x1",
+        color: "#ffd850",
+      },
+      {
+        id: 1,
+        name: "抖音",
+        icon: getImg("douyu"),
+        url: "https://www.baidu.com",
+        size: "1x1",
+        color: "#fe6a2d",
+      },
+      {
+        id: 2,
+        name: "测试",
+        icon: getImg("douyu"),
+        url: "https://www.baidu.com",
+        size: "2x2",
+        color: "#fe6a2d",
+      },
+    ],
   },
-  {
-    id: 1,
-    name: "抖音",
-    icon: getImg("douyu"),
-    url: "https://www.baidu.com",
-    size: "1x1",
-    color: "#fe6a2d",
-  },
-  {
-    id: 2,
-    name: "测试",
-    icon: getImg("douyu"),
-    url: "https://www.baidu.com",
-    size: "2x2",
-    color: "#fe6a2d",
-  },
-  // {
-  //   name: "抖音",
-  //   icon: getImg("douyu"),
-  //   url: "https://www.baidu.com",
-  //   size: "1x1",
-  // },
-  // {
-  //   name: "微博",
-  //   icon: getImg("weibo"),
-  //   url: "https://www.baidu.com",
-  //   size: "1x2",
-  // },
-  // {
-  //   name: "微博",
-  //   icon: getImg("weibo"),
-  //   url: "https://www.baidu.com",
-  //   size: "2x1",
-  // },
-  // {
-  //   name: "微博",
-  //   icon: getImg("weibo"),
-  //   url: "https://www.baidu.com",
-  //   size: "1x1",
-  // },
-  // {
-  //   name: "微博",
-  //   icon: getImg("weibo"),
-  //   url: "https://www.baidu.com",
-  //   size: "2x4",
-  // },
-  // {
-  //   name: "微博",
-  //   icon: getImg("weibo"),
-  //   url: "https://www.baidu.com",
-  //   size: "1x1",
-  // },
-
-  // {
-  //   name: "微博",
-  //   icon: getImg("weibo"),
-  //   url: "https://www.baidu.com",
-  //   size: "1x1",
-  // },
-  // {
-  //   name: "抖音",
-  //   icon: getImg("douyu"),
-  //   url: "https://www.baidu.com",
-  //   size: "1x1",
-  // },
-  // {
-  //   name: "抖音",
-  //   icon: getImg("douyu"),
-  //   url: "https://www.baidu.com",
-  //   size: "2x2",
-  // },
-  // {
-  //   name: "抖音",
-  //   icon: getImg("douyu"),
-  //   url: "https://www.baidu.com",
-  //   size: "1x1",
-  // },
-  // {
-  //   name: "微博",
-  //   icon: getImg("weibo"),
-  //   url: "https://www.baidu.com",
-  //   size: "1x2",
-  // },
-  // {
-  //   name: "微博",
-  //   icon: getImg("weibo"),
-  //   url: "https://www.baidu.com",
-  //   size: "2x1",
-  // },
-  // {
-  //   name: "微博",
-  //   icon: getImg("weibo"),
-  //   url: "https://www.baidu.com",
-  //   size: "1x1",
-  // },
-  // {
-  //   name: "微博",
-  //   icon: getImg("weibo"),
-  //   url: "https://www.baidu.com",
-  //   size: "2x4",
-  // },
-  // {
-  //   name: "微博",
-  //   icon: getImg("weibo"),
-  //   url: "https://www.baidu.com",
-  //   size: "1x1",
-  // },
+  { name: "第二", apps: [] },
+  { name: "第三", apps: [] },
 ])
+
+const el = ref<UseDraggableReturn>()
+
+const onStart = () => {
+  console.log(tabs, "tabs")
+}
+
+const onUpdate = () => {
+  console.log(tabs, "tabs")
+}
+
+// const appMenu = ref<AppMenu[]>([
+//   {
+//     id: 0,
+//     name: "微博",
+//     icon: getImg("weibo"),
+//     url: "https://www.baidu.com",
+//     size: "1x1",
+//     color: "#ffd850",
+//   },
+//   {
+//     id: 1,
+//     name: "抖音",
+//     icon: getImg("douyu"),
+//     url: "https://www.baidu.com",
+//     size: "1x1",
+//     color: "#fe6a2d",
+//   },
+//   {
+//     id: 2,
+//     name: "测试",
+//     icon: getImg("douyu"),
+//     url: "https://www.baidu.com",
+//     size: "2x2",
+//     color: "#fe6a2d",
+//   },
+//   // {
+//   //   name: "抖音",
+//   //   icon: getImg("douyu"),
+//   //   url: "https://www.baidu.com",
+//   //   size: "1x1",
+//   // },
+//   // {
+//   //   name: "微博",
+//   //   icon: getImg("weibo"),
+//   //   url: "https://www.baidu.com",
+//   //   size: "1x2",
+//   // },
+//   // {
+//   //   name: "微博",
+//   //   icon: getImg("weibo"),
+//   //   url: "https://www.baidu.com",
+//   //   size: "2x1",
+//   // },
+//   // {
+//   //   name: "微博",
+//   //   icon: getImg("weibo"),
+//   //   url: "https://www.baidu.com",
+//   //   size: "1x1",
+//   // },
+//   // {
+//   //   name: "微博",
+//   //   icon: getImg("weibo"),
+//   //   url: "https://www.baidu.com",
+//   //   size: "2x4",
+//   // },
+//   // {
+//   //   name: "微博",
+//   //   icon: getImg("weibo"),
+//   //   url: "https://www.baidu.com",
+//   //   size: "1x1",
+//   // },
+
+//   // {
+//   //   name: "微博",
+//   //   icon: getImg("weibo"),
+//   //   url: "https://www.baidu.com",
+//   //   size: "1x1",
+//   // },
+//   // {
+//   //   name: "抖音",
+//   //   icon: getImg("douyu"),
+//   //   url: "https://www.baidu.com",
+//   //   size: "1x1",
+//   // },
+//   // {
+//   //   name: "抖音",
+//   //   icon: getImg("douyu"),
+//   //   url: "https://www.baidu.com",
+//   //   size: "2x2",
+//   // },
+//   // {
+//   //   name: "抖音",
+//   //   icon: getImg("douyu"),
+//   //   url: "https://www.baidu.com",
+//   //   size: "1x1",
+//   // },
+//   // {
+//   //   name: "微博",
+//   //   icon: getImg("weibo"),
+//   //   url: "https://www.baidu.com",
+//   //   size: "1x2",
+//   // },
+//   // {
+//   //   name: "微博",
+//   //   icon: getImg("weibo"),
+//   //   url: "https://www.baidu.com",
+//   //   size: "2x1",
+//   // },
+//   // {
+//   //   name: "微博",
+//   //   icon: getImg("weibo"),
+//   //   url: "https://www.baidu.com",
+//   //   size: "1x1",
+//   // },
+//   // {
+//   //   name: "微博",
+//   //   icon: getImg("weibo"),
+//   //   url: "https://www.baidu.com",
+//   //   size: "2x4",
+//   // },
+//   // {
+//   //   name: "微博",
+//   //   icon: getImg("weibo"),
+//   //   url: "https://www.baidu.com",
+//   //   size: "1x1",
+//   // },
+// ])
 </script>
