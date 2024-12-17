@@ -2,9 +2,11 @@ import { createApp } from "vue"
 import { router } from "@/router"
 import App from "./App.vue"
 import VueDOMPurifyHTML from "vue-dompurify-html"
+import "@/utils/index" // 引入全局变量
 
 import "normalize.css/normalize.css"
 import "@/assets/styles/pc/index.scss"
+console.log(mhz)
 
 import * as ElementPlusIconsVue from "@element-plus/icons-vue" //引入图标
 import "element-plus/dist/index.css" //引入样式

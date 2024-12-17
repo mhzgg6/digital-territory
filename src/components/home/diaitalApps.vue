@@ -78,6 +78,78 @@ const tabs = ref<Tab[]>([
         size: "2x2",
         color: "#fe6a2d",
       },
+      {
+        id: 2,
+        name: "测试",
+        icon: getImg("douyu"),
+        url: "https://www.baidu.com",
+        size: "2x2",
+        color: "#fe6a2d",
+      },
+      {
+        id: 2,
+        name: "测试",
+        icon: getImg("douyu"),
+        url: "https://www.baidu.com",
+        size: "2x2",
+        color: "#fe6a2d",
+      },
+      {
+        id: 2,
+        name: "测试",
+        icon: getImg("douyu"),
+        url: "https://www.baidu.com",
+        size: "2x2",
+        color: "#fe6a2d",
+      },
+      {
+        id: 2,
+        name: "测试",
+        icon: getImg("douyu"),
+        url: "https://www.baidu.com",
+        size: "2x2",
+        color: "#fe6a2d",
+      },
+      {
+        id: 2,
+        name: "测试",
+        icon: getImg("douyu"),
+        url: "https://www.baidu.com",
+        size: "2x2",
+        color: "#fe6a2d",
+      },
+      {
+        id: 2,
+        name: "测试",
+        icon: getImg("douyu"),
+        url: "https://www.baidu.com",
+        size: "2x2",
+        color: "#fe6a2d",
+      },
+      {
+        id: 2,
+        name: "测试",
+        icon: getImg("douyu"),
+        url: "https://www.baidu.com",
+        size: "2x2",
+        color: "#fe6a2d",
+      },
+      {
+        id: 2,
+        name: "测试",
+        icon: getImg("douyu"),
+        url: "https://www.baidu.com",
+        size: "2x2",
+        color: "#fe6a2d",
+      },
+      {
+        id: 2,
+        name: "测试",
+        icon: getImg("douyu"),
+        url: "https://www.baidu.com",
+        size: "2x2",
+        color: "#fe6a2d",
+      },
     ],
   },
   { name: "第二", apps: [] },
@@ -85,7 +157,9 @@ const tabs = ref<Tab[]>([
 ])
 
 const el = ref<UseDraggableReturn>()
-
+// const testTabs = tabs.value.map((item) => {
+//   return item
+// })
 const onStart = () => {
   console.log(tabs, "tabs")
 }
@@ -93,122 +167,4 @@ const onStart = () => {
 const onUpdate = () => {
   console.log(tabs, "tabs")
 }
-
-// const appMenu = ref<AppMenu[]>([
-//   {
-//     id: 0,
-//     name: "微博",
-//     icon: getImg("weibo"),
-//     url: "https://www.baidu.com",
-//     size: "1x1",
-//     color: "#ffd850",
-//   },
-//   {
-//     id: 1,
-//     name: "抖音",
-//     icon: getImg("douyu"),
-//     url: "https://www.baidu.com",
-//     size: "1x1",
-//     color: "#fe6a2d",
-//   },
-//   {
-//     id: 2,
-//     name: "测试",
-//     icon: getImg("douyu"),
-//     url: "https://www.baidu.com",
-//     size: "2x2",
-//     color: "#fe6a2d",
-//   },
-//   // {
-//   //   name: "抖音",
-//   //   icon: getImg("douyu"),
-//   //   url: "https://www.baidu.com",
-//   //   size: "1x1",
-//   // },
-//   // {
-//   //   name: "微博",
-//   //   icon: getImg("weibo"),
-//   //   url: "https://www.baidu.com",
-//   //   size: "1x2",
-//   // },
-//   // {
-//   //   name: "微博",
-//   //   icon: getImg("weibo"),
-//   //   url: "https://www.baidu.com",
-//   //   size: "2x1",
-//   // },
-//   // {
-//   //   name: "微博",
-//   //   icon: getImg("weibo"),
-//   //   url: "https://www.baidu.com",
-//   //   size: "1x1",
-//   // },
-//   // {
-//   //   name: "微博",
-//   //   icon: getImg("weibo"),
-//   //   url: "https://www.baidu.com",
-//   //   size: "2x4",
-//   // },
-//   // {
-//   //   name: "微博",
-//   //   icon: getImg("weibo"),
-//   //   url: "https://www.baidu.com",
-//   //   size: "1x1",
-//   // },
-
-//   // {
-//   //   name: "微博",
-//   //   icon: getImg("weibo"),
-//   //   url: "https://www.baidu.com",
-//   //   size: "1x1",
-//   // },
-//   // {
-//   //   name: "抖音",
-//   //   icon: getImg("douyu"),
-//   //   url: "https://www.baidu.com",
-//   //   size: "1x1",
-//   // },
-//   // {
-//   //   name: "抖音",
-//   //   icon: getImg("douyu"),
-//   //   url: "https://www.baidu.com",
-//   //   size: "2x2",
-//   // },
-//   // {
-//   //   name: "抖音",
-//   //   icon: getImg("douyu"),
-//   //   url: "https://www.baidu.com",
-//   //   size: "1x1",
-//   // },
-//   // {
-//   //   name: "微博",
-//   //   icon: getImg("weibo"),
-//   //   url: "https://www.baidu.com",
-//   //   size: "1x2",
-//   // },
-//   // {
-//   //   name: "微博",
-//   //   icon: getImg("weibo"),
-//   //   url: "https://www.baidu.com",
-//   //   size: "2x1",
-//   // },
-//   // {
-//   //   name: "微博",
-//   //   icon: getImg("weibo"),
-//   //   url: "https://www.baidu.com",
-//   //   size: "1x1",
-//   // },
-//   // {
-//   //   name: "微博",
-//   //   icon: getImg("weibo"),
-//   //   url: "https://www.baidu.com",
-//   //   size: "2x4",
-//   // },
-//   // {
-//   //   name: "微博",
-//   //   icon: getImg("weibo"),
-//   //   url: "https://www.baidu.com",
-//   //   size: "1x1",
-//   // },
-// ])
 </script>
