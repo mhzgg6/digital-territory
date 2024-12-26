@@ -15,7 +15,7 @@
   <!-- <el-drawer v-model="drawer" :with-header="false" :modal="false" :direction="direction" :before-close="handleClose">
     <diaital-setting></diaital-setting>
   </el-drawer> -->
-  <el-overlay v-show="drawer" overlay-class="overlay-warp" :z-index="9999" :mask="true" @click="onModalClick">
+  <el-overlay v-show="drawer" overlay-class="overlay-warp" :z-index="999" :mask="true" @click="onModalClick">
     <diaital-setting></diaital-setting>
   </el-overlay>
 </template>

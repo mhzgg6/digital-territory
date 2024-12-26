@@ -7,6 +7,7 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    BaseDialog: typeof import('./src/components/dialogs/baseDialog.vue')['default']
     DiaitalApps: typeof import('./src/components/home/diaitalApps.vue')['default']
     DiaitalDate: typeof import('./src/components/home/diaitalDate.vue')['default']
     DiaitalHeader: typeof import('./src/components/home/diaitalHeader.vue')['default']
@@ -18,6 +19,7 @@ declare module 'vue' {
     ElDialog: typeof import('element-plus/es')['ElDialog']
     ElForm: typeof import('element-plus/es')['ElForm']
     ElFormItem: typeof import('element-plus/es')['ElFormItem']
+    ElIcon: typeof import('element-plus/es')['ElIcon']
     ElInput: typeof import('element-plus/es')['ElInput']
     ElOverlay: typeof import('element-plus/es')['ElOverlay']
     ElRow: typeof import('element-plus/es')['ElRow']
@@ -26,6 +28,8 @@ declare module 'vue' {
     Menu: typeof import('./src/components/menu/menu.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    Wallpaper: typeof import('./src/components/settings/wallpaper.vue')['default']
+    ThemeDialog: typeof import('./src/components/dialogs/themeDialog.vue')['default']
+    ThemeSetting: typeof import('./src/components/settings/themeSetting.vue')['default']
+    WallpaperSetting: typeof import('./src/components/settings/wallpaperSetting.vue')['default']
   }
 }

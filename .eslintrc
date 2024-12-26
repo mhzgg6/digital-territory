@@ -39,6 +39,16 @@
         "allow": ["warn", "error"]
       }
     ],
-    "no-debugger": "warn" //提交时不允许有debugger
+    "no-debugger": "warn", //提交时不允许有debugger
+    "object-property-newline": [
+      "error", { "allowAllPropertiesOnSameLine": true }
+    ],
+    "object-curly-newline": [
+      "error", 
+      {
+        "ObjectPattern": { "multiline": true },
+        "ImportDeclaration": { "multiline": true }
+      }
+    ]
   }
 }

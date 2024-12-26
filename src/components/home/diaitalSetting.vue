@@ -11,35 +11,19 @@
     </div>
     <div class="setting-warp">
       <el-tabs :tab-position="tabPosition" class="setting-tabs">
-        <el-tab-pane v-for="(item, index) in tabList" :key="index" :label="item.label">
+        <el-tab-pane v-for="(item, index) in tabList" :key="index" :label="item.label" @click="handleSetting">
           {{ item.label }}
-          <div @click="handleSetting">设置壁纸</div>
         </el-tab-pane>
       </el-tabs>
     </div>
   </div>
-
-  <el-dialog
-    v-model="dialogVisible"
-    title="Tips"
-    width="500"
-    :before-close="handleClose"
-  >
-    <span>This is a message</span>
-    <template #footer>
-      <div class="dialog-footer">
-        <el-button @click="dialogVisible = false">Cancel</el-button>
-        <el-button type="primary" @click="dialogVisible = false">
-          Confirm
-        </el-button>
-      </div>
-    </template>
-  </el-dialog>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue"
 import type { TabsInstance } from "element-plus"
+import ThemeDialog from "../dialogs/themeDialog.vue"
+
 interface TabItem {
   label: string
   icon: string
@@ -52,5 +36,36 @@ const tabList = ref<TabItem[]>([
   { label: "壁纸", icon: "el-icon-s-home", active: true },
 ])
 
-const handleSetting = () => {}
+// const handleClose = () => {}
+// const handleConfirm = () => {}
+const handleSetting = () => {
+  mhz.openDialog({
+    title: "设置",
+    width: "80%",
+    height: "50%",
+    content: "dialogs/themeDialog",
+    btns: [
+      {
+        text: "确定",
+      },
+    ],
+  })
+}
 </script>
+
+<style lang="scss" scoped>
+:deep(.didital-setting__dialog) {
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.6);
+}
+:deep(.didital-setting__header) {
+  display: flex;
+}
+// .didital-setting__header-close {
+//   width: 20px;
+//   height: 20px;
+// }
+.didital-setting__content {
+  height: 600px;
+}
+</style>
