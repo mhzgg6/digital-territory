@@ -41,14 +41,15 @@ const tabList = ref<TabItem[]>([
 const handleSetting = () => {
   mhz.openDialog({
     title: "设置",
-    width: "80%",
+    width: "65%",
     height: "50%",
-    content: "dialogs/themeDialog",
-    btns: [
-      {
-        text: "确定",
-      },
-    ],
+    modal: false, 
+    content: "themeDialog",
+    // btns: [
+    //   {
+    //     text: "确定",
+    //   },
+    // ],
   })
 }
 </script>

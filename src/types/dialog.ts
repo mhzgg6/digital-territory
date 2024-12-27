@@ -11,6 +11,7 @@ export interface DialogOptions {
   title?: string
   width?: string
   height?: string
+  modal?: boolean
   showClose?: boolean
   fullscreen?: boolean
   dialogClass?: string

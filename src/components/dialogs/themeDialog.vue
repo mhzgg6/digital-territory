@@ -1,67 +1,46 @@
 <template>
-  <base-dialog v-model="visible" v-bind="dialogOptions" @close="handleClose">
-    <template #header>
-      <div class="custom-header">
-        {{ title }}
+  <div class="theme-dialog">
+    <div class="theme-dialog__left">
+      <div v-for="item in menuList" :key="item.name" class="theme-dialog__left-item">
+        {{ item.name }}
       </div>
-    </template>
-    <div class="content">
-      <!-- 你的内容 -->
     </div>
+    <div class="theme-dialog__right">
 
-    <template #footer>
-      <div class="dialog-footer">
-        <el-button @click="visible = false">取消</el-button>
-        <el-button type="primary" @click="handleConfirm">确认</el-button>
-      </div>
-    </template>
-  </base-dialog>
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
-import { computed, withDefaults, defineProps } from "vue"
-import type { DialogConfig } from "@/types"
+import { ref } from "vue"
 
-interface Props {
-  modelValue: boolean
-  type?: keyof typeof dialogConfig
-  title?: string
-}
-const dialogConfig: DialogConfig = {
-  basic: {
-    dialogVisible: false,
-    title: "标题",
-    width: "60%",
-    closeOnClickModal: true,
-    closeOnPressEscape: true,
-    showClose: true,
-    destroyOnClose: false,
-    dialogClass: "",
+const menuList = ref([
+  {
+    name: "主题",
+    active: true,
   },
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  type: "basic",
-  title: "",
-})
-
-const emit = defineEmits(["update:modelValue", "close", "confirm"])
-
-const visible = computed({
-  get: () => props.modelValue,
-  set: (val) => emit("update:modelValue", val),
-})
-const dialogOptions = computed(() => ({
-  ...dialogConfig[props.type],
-  title: props.title,
-}))
-
-const handleClose = () => {
-  emit("close")
-}
-
-const handleConfirm = () => {
-  emit("confirm")
-  visible.value = false
-}
+  {
+    name: "背景",
+    active: false,
+  },
+])
 </script>
+
+<style lang="scss" scoped>
+.theme-dialog {
+  box-sizing: border-box;
+  display: flex;
+  height: 100%;
+  padding: 20px;
+  &__left {
+    box-sizing: border-box;
+    width: 200px;
+    height: 100%;
+    border: 1px solid #f4f4f7;
+    // background-color: #f0f1f4;
+  }
+  &__right {
+    flex: 1;
+  }
+}
+</style>
