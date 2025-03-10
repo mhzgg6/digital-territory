@@ -19,7 +19,6 @@ declare module 'vue' {
     ElDialog: typeof import('element-plus/es')['ElDialog']
     ElForm: typeof import('element-plus/es')['ElForm']
     ElFormItem: typeof import('element-plus/es')['ElFormItem']
-    ElIcon: typeof import('element-plus/es')['ElIcon']
     ElInput: typeof import('element-plus/es')['ElInput']
     ElOverlay: typeof import('element-plus/es')['ElOverlay']
     ElRow: typeof import('element-plus/es')['ElRow']
@@ -30,6 +29,7 @@ declare module 'vue' {
     RouterView: typeof import('vue-router')['RouterView']
     ThemeDialog: typeof import('./src/components/dialogs/themeDialog.vue')['default']
     ThemeSetting: typeof import('./src/components/settings/themeSetting.vue')['default']
+    Wallpaper: typeof import('./src/components/settings/wallpaper.vue')['default']
     WallpaperSetting: typeof import('./src/components/settings/wallpaperSetting.vue')['default']
   }
 }

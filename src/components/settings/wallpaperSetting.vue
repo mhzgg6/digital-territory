@@ -1,6 +1,6 @@
 <template>
   <div class="wallpaper-setting">
-    
+    1111
   </div>
 </template>
 

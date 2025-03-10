@@ -1,110 +1,154 @@
 <template>
   <el-dialog
-    v-model="dialogVisible"
+    v-model="visible"
     :title="title"
     :width="width"
-    :modal="modal"
-    :class="dialogClass"
+    :top="top"
+    :custom-class="customClass"
     :show-close="showClose"
-    :append-to-body="appendToBody"
-    :full-screen="fullscreen"
-    :destroy-on-close="destroyOnClose"
     :close-on-click-modal="closeOnClickModal"
-    :close-on-press-escape="closeOnPressEscape"
-    :before-close="handleClose"
+    @closed="handleClosed"
   >
-    <template #header="{ close, titleId, titleClass }">
-      <div class="custom-header">
-        <!-- <div class="custom-header__bg"></div> -->
-        <div :id="titleId" class="custom-header__title" :class="titleClass">{{ title }}</div>
-      </div>
-    </template>
-
-    <slot></slot>
-
-    <template v-if="$slots.footer" #footer>
-      <slot name="footer"></slot>
+    <slot>
+      <component :is="resolvedComponent" v-bind="componentProps" ref="contentRef" />
+    </slot>
+    <template v-if="showFooter" #footer>
+      <slot name="footer">
+        <el-button
+          v-for="(btn, index) in buttons"
+          :key="index"
+          :type="btn.type || 'primary'"
+          :loading="btn.loading"
+          @click="handleButtonClick(btn)"
+        >
+          {{ btn.text }}
+        </el-button>
+      </slot>
     </template>
   </el-dialog>
 </template>
 
 <script setup lang="ts">
-import { computed, defineProps } from "vue"
+import { ref, computed, type Component, type PropType, resolveComponent } from "vue"
+import type { DialogButton } from "@/types"
+import { log } from "node:console"
+const curName = ref("wallpaperSetting")
+const props = defineProps({
+  title: {
+    type: String,
+    default: "提示",
+  },
+  width: {
+    type: [String, Number],
+    default: "50%",
+  },
+  top: {
+    type: String,
+    default: "15vh",
+  },
+  content: {
+    type: [String, Object] as PropType<string | Component>,
+    required: true,
+  },
+  componentProps: {
+    type: Object,
+    default: () => ({}),
+  },
+  buttons: {
+    type: Array as PropType<DialogButton[]>,
+    default: () => [],
+  },
+  showFooter: {
+    type: Boolean,
+    default: true,
+  },
+  showClose: {
+    type: Boolean,
+    default: true,
+  },
+  closeOnClickModal: {
+    type: Boolean,
+    default: true,
+  },
+  customClass: {
+    type: String,
+    default: "",
+  },
+})
 
-interface DialogProps {
-  modelValue: boolean
-  title?: string
-  width?: string
-  height?: string
-  modal?: boolean
-  showClose?: boolean
-  fullscreen?: boolean
-  dialogClass?: string
-  appendToBody?: boolean
-  destroyOnClose?: boolean
-  closeOnClickModal?: boolean
-  closeOnPressEscape?: boolean
+const emit = defineEmits(["open", "close", "confirm", "cancel"])
+
+const visible = ref(true)
+// const contentRef = ref<InstanceType<Component>>()
+
+// 解析动态组件
+// 修改后的解析逻辑
+const resolvedComponent = computed<Component | null>(() => {
+  if (!props.content) return null
+  try {
+    // 处理字符串类型的组件名
+    if (typeof props.content === 'string') {
+      const resolved = resolveComponent(props.content)
+      console.log('resolvedComponent:', resolved);
+      
+      // 类型保护：确保返回的是组件对象
+      if (typeof resolved === 'string') {
+        throw new Error(`Component "${props.content}" not found`)
+      }
+      return resolved as Component
+    }
+    // 直接传入组件对象的情况
+    return props.content
+  } catch (error) {
+    console.error('组件解析失败:', error)
+    return null
+  }
+})
+const open = () => {
+  console.log("open");
+  visible.value = true
+  emit("open")
 }
 
-const props = withDefaults(defineProps<DialogProps>(), {
-  modelValue: false,
-  title: "",
-  width: "65%",
-  height: "60%",
-  modal: true,
-  showClose: false,
-  fullscreen: false,
-  dialogClass: "basic-dialog",
-  appendToBody: true,
-  destroyOnClose: false,
-  closeOnClickModal: true,
-  closeOnPressEscape: true,
-})
-
-const emit = defineEmits(["update:modelValue", "close"])
-
-const dialogVisible = computed({
-  get: () => props.modelValue,
-  set: (val) => emit("update:modelValue", val),
-})
-const title = computed(() => props.title)
-const handleClose = (done: () => void) => {
+const close = () => {
+  visible.value = false
   emit("close")
-  done()
 }
+
+const handleClosed = () => {
+  emit("cancel")
+}
+
+const handleButtonClick = async (btn: DialogButton) => {
+  if (!btn.handler) return
+  try {
+    const result = await btn.handler()
+    if (result !== false) {
+      close()
+      emit("confirm")
+    }
+  } catch (error) {
+    console.error("Dialog action error:", error)
+  }
+}
+
+defineExpose({
+  open,
+  close,
+  // getContentRef: () => contentRef.value,
+})
 </script>
 
-<style lang="scss">
-.basic-dialog {
-  border-radius: 10px !important;
-  // backdrop-filter: blur(10px);
-  padding: 0 !important;
-  background-color: rgba(255, 255, 255, 1) !important;
-  // box-shadow:
-  //   0 0.7px 1px rgba(0, 0, 0, 0.157),
-  //   0 1.7px 2.6px rgba(0, 0, 0, 0.224),
-  //   0 3.5px 5.3px rgba(0, 0, 0, 0.28);
-  .el-dialog__header {
-    border-radius: 10px 10px 0 0;
-    .custom-header {
-      padding: 10px 20px;
-      // background-color: #fbfbfc;
-      // border-bottom: 1px solid #f4f4f7;
-      position: relative;
-      &__bg {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-image: url("../../assets/images/custom-dialog-bg.png");
-        background-size: 100% 100%;
-        z-index: 0;
-      }
-    }
-  }
-  .el-dialog__body {
-    height: 528px;
-  }
+<style scoped>
+/* 自定义样式 */
+:deep(.el-dialog__body) {
+  max-height: 70vh;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+:deep(.el-dialog__footer) {
+  padding: 20px;
+  text-align: right;
 }
 </style>

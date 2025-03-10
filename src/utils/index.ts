@@ -11,7 +11,6 @@ interface GlobalConfig {
   openDialog: (options: DialogOptions) => Promise<boolean>
   // 可以继续扩展其他全局属性
 }
-console.log(dialogService);
 
 // 初始化默认配置
 const _mhz: GlobalConfig = {
